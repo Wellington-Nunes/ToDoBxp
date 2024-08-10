@@ -1,25 +1,22 @@
-import styled from 'styled-components/native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import { StatusBar } from 'react-native';
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5fcff;
-  padding: 0 20px;
-`;
+const Stack = createNativeStackNavigator();
 
-const StyledImage = styled.Image`
-  width: 300px;
-`;
-
-/* eslint-disable @typescript-eslint/no-require-imports */
 export default function App() {
   return (
-    <Container>
-      <StyledImage
-        source={require('./src/assets/logo.png')}
-        resizeMode="center"
-      />
-    </Container>
+    <NavigationContainer>
+      <StatusBar barStyle={'dark-content'} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Tela Inicial' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
